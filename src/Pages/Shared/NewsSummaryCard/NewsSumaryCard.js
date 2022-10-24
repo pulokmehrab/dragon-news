@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 
 
 const NewsSumaryCard = ({news}) => {
-    console.log(news)
+    
     const {_id, title, author,total_view, details, image_url,rating}=news;
     return (
         <div>
              <Card className='mt-4'>
-      <Card.Header>{title}</Card.Header>
+      <Card.Header><h1>{title}</h1></Card.Header>
       <Card.Body>
         <blockquote className="blockquote mb-0">
         <Card.Img variant="top" src={image_url}/>
