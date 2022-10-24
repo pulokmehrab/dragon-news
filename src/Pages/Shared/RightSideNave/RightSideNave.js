@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FaGoogle,FaGithub,FaFacebook,FaTwitter,FaWhatsapp  } from "react-icons/fa";
@@ -7,10 +7,25 @@ import Carousel from 'react-bootstrap/Carousel';
 import image1 from '../../../images/image1.png';
 import img2 from '../../../images/img2.jpg';
 import images3 from '../../../images/images3.jpg';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 
 
 const RightSideNave = () => {
+    const {providerLogin}=useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleGooleSignin =() =>{
+       providerLogin(googleProvider)
+       .then(result=>{
+        const user =result.user
+        console.log(user);
+       })
+       .catch(error=>console.log(error));
+    }
+    
     return (
         <div>
           
@@ -18,7 +33,7 @@ const RightSideNave = () => {
      
       
 
-      <Button variant="outline-primary mb-3" ><FaGoogle></FaGoogle> Sign In with Google</Button>
+      <Button onClick={handleGooleSignin} variant="outline-primary mb-3" ><FaGoogle></FaGoogle> Sign In with Google</Button>
       <Button variant="outline-dark"><FaGithub></FaGithub> Sign in with GitHub</Button>
       
       
